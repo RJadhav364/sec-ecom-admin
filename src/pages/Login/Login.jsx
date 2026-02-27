@@ -1,13 +1,42 @@
-import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Service_url } from '../../../config/app.config';
+import useAxiosFetch from '../../hooks/useAxiosFetch';
+import useToast from '../../hooks/useToast';
+import useAdminStore from '../../store/useAdminAuthentication';
+import useUnprotectedRoutes from '../../hooks/useUnprotectedRoutes';
 
 const Login = () => {
+    const { data, loading, error, fetchData } = useAxiosFetch();
+    const { toastSuccess, toastError } = useToast();
+    const { setAdminAuth, isAdminLogin } = useAdminStore();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (isAdminLogin === true) {
+            navigate("/dashboard")
+        }
+    }, [isAdminLogin])
     const adminLoginDetails = useRef({
         email: "",
         password: "",
     });
-    const handleSubmitAdminLogin = () => {
-        console.log(adminLoginDetails.current)
+    const handleSubmitAdminLogin = async () => {
+        // console.log(adminLoginDetails.current)
+        try {
+            const fetchResponse = await fetchData(`${Service_url}/admin-login`, adminLoginDetails.current);
+            console.log(fetchResponse)
+            toastSuccess(fetchResponse?.data?.message)
+            setAdminAuth({
+                isAdminLogin: true,
+                token: fetchResponse?.data?.data?.token,
+                email: fetchResponse?.data?.data?.email,
+                id: fetchResponse?.data?.data?.id,
+                username: fetchResponse?.data?.data?.username,
+            })
+            navigate("/dashboard");
+        } catch (error) {
+            toastError(error?.data?.message)
+        }
     }
     return (
         <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
@@ -52,7 +81,7 @@ const Login = () => {
                                 </div>
                             </div> */}
                             <div className="mx-auto max-w-xs">
-                                <input className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="email" placeholder="Email" onChange={(e) => adminLoginDetails.current.email = e.target.value}  />
+                                <input className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="email" placeholder="Email" onChange={(e) => adminLoginDetails.current.email = e.target.value} />
                                 <input className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5" type="password" placeholder="Password" onChange={(e) => adminLoginDetails.current.password = e.target.value} />
                                 <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none" onClick={handleSubmitAdminLogin}>
                                     <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

@@ -14,7 +14,7 @@ const useAxiosFetch = () => {
             return response;
         } catch (err) {
             setError(err);
-            throw err;
+            throw err?.response;
         } finally {
             setLoading(false);
         }
