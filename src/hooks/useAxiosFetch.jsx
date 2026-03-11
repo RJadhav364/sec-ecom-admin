@@ -24,11 +24,15 @@ const useAxiosFetch = () => {
         //     return setData(res.data);
         // })
     };
-    const fetchDataGet = async (url) => {
+    const fetchDataGet = async (url, token) => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get(url);
+            const response = await axios.get(url, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             //   setData(response.data);
             return response;
         } catch (err) {
@@ -44,7 +48,7 @@ const useAxiosFetch = () => {
     //   }, [url]); 
 
     // The hook returns the state variables for the component to use
-    return { data, error, loading, fetchData };
+    return { data, error, loading, fetchData,fetchDataGet };
 };
 
 export default useAxiosFetch;
