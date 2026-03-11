@@ -52,7 +52,7 @@ const navElements = [
   },
   {
     title: "Products",
-    href: "/products",
+    href: "/",
     // icon: <AiOutlineUser className='w-6 h-6 mr-2' />
     icon: (
       <img
@@ -63,7 +63,7 @@ const navElements = [
     ),
     isCollapsedTheir: true,
     isCollapsedChildren: [
-      { title: "Category List", collapseHref: "banner-list" },
+      { title: "Product List", collapseHref: "/dashboard/product-list" },
       { title: "Add Category", collapseHref: "add-banner" },
     ],
   },
@@ -120,7 +120,7 @@ const Sidebar = () => {
         <nav className="mt-10">
           {navElements.map((navElement) => (
             <div
-              href={navElement.href}
+              // href={navElement.href}
               key={navElement.title}
               className="cursor-pointer"
             >
@@ -156,6 +156,8 @@ const Sidebar = () => {
               {navElement.isCollapsedTheir &&
                 navElement?.isCollapsedChildren?.map(({ title, collapseHref }) => (
                   <div
+                  key={title}
+                  id={collapseHref}
                     className={`flex items-center ml-10 transition-max-height duration-500 ease-in-out overflow-hidden ${
                       isOpen.openCollapse && isOpen.title == navElement.title
                         ? "max-h-screen"
@@ -175,7 +177,7 @@ const Sidebar = () => {
                         ></path>
                       </svg>
                     </span>
-                    <Link href={collapseHref} className="p-1.5 border-gray-200">
+                    <Link to={collapseHref} className="p-1.5 border-gray-200">
                       {title}
                     </Link>
                   </div>
