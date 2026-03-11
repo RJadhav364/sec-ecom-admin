@@ -13,7 +13,7 @@ const Login = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (isAdminLogin === true) {
-            // navigate("/dashboard")
+            navigate("/dashboard")
         }
     }, [isAdminLogin])
     const adminLoginDetails = useRef({
