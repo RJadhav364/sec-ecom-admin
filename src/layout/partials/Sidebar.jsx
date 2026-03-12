@@ -8,7 +8,7 @@ const navElements = [
     href: "/dashboard",
     icon: (
       <img
-        src="/public/material-symbols-light--dashboard-rounded.png"
+        src="/material-symbols-light--dashboard-rounded.png"
         className="className='w-6 h-6 mr-2'"
         alt=""
       />
@@ -22,7 +22,7 @@ const navElements = [
     // icon: <AiOutlineUser className='w-6 h-6 mr-2' />
     icon: (
       <img
-        src="/public/ci--slider-02.png"
+        src="/ci--slider-02.png"
         className="className='w-6 h-6 mr-2'"
         alt=""
       />
@@ -39,7 +39,7 @@ const navElements = [
     // icon: <AiOutlineUser className='w-6 h-6 mr-2' />
     icon: (
       <img
-        src="/public/tabler--category-filled.png"
+        src="/tabler--category-filled.png"
         className="className='w-6 h-6 mr-2'"
         alt=""
       />
@@ -56,7 +56,7 @@ const navElements = [
     // icon: <AiOutlineUser className='w-6 h-6 mr-2' />
     icon: (
       <img
-        src="/public/fluent-mdl2--product.png"
+        src="/fluent-mdl2--product.png"
         className="className='w-6 h-6 mr-2'"
         alt=""
       />
@@ -73,7 +73,7 @@ const navElements = [
     // icon: <AiOutlineUser className='w-6 h-6 mr-2' />
     icon: (
       <img
-        src="/public/mingcute--basket-line.png"
+        src="/mingcute--basket-line.png"
         className="className='w-6 h-6 mr-2'"
         alt=""
       />
@@ -107,12 +107,12 @@ const Sidebar = () => {
         >
           {isCollapsed ? (
             <img
-              src="/public/material-symbols--menu-rounded.png"
+              src="/material-symbols--menu-rounded.png"
               className="w-[24px]"
               alt=""
             />
           ) : (
-            <img src="/public/iconoir--xmark.png" className="w-[24px]" alt="" />
+            <img src="/iconoir--xmark.png" className="w-[24px]" alt="" />
           )}
         </button>
       </div>
@@ -146,7 +146,7 @@ const Sidebar = () => {
                     className={`inline-block transition-transform duration-400 ${isOpen.openCollapse && isOpen.title == navElement.title ? "rotate-[90deg]" : ""}`}
                   >
                     <img
-                      src="/public/mingcute--right-fill.png"
+                      src="/mingcute--right-fill.png"
                       className="w-[24px]"
                       alt=""
                     />
@@ -188,7 +188,7 @@ const Sidebar = () => {
         <div className="mb-10 transition-opacity duration-300 delay-300">
           <button className="flex items-center py-2.5 px-4 w-full text-left rounder transition duration-300 hover:bg-red-700 hover:text-white">
             <img
-              src="/public/tabler--logout.png"
+              src="/tabler--logout.png"
               className="w-6 h-6 mr-2"
               alt=""
             />
